@@ -1,0 +1,119 @@
+<html>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <meta http-equiv="Content-Type" content="text/html;charset=euc-kr" />
+
+ 
+
+<script type="text/xxjavascript">
+
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var filename="C:\\scriptTest.txt";
+
+    function createfile() {
+  var f;
+  try{
+   f = fso.CreateTextFile(filename,true);
+   f.WriteLine("테스트");
+  }catch(e){
+   alert(‎e.message);
+  }finally{
+   f.Close();
+  }
+ }
+
+    function savefile() {
+  var f;
+  try{
+   if (!fso.FileExists(filename)) {
+    fso.CreateTextFile(filename,true);
+   }
+   f = fso.OpenTextFile(filename,2,true);
+   f.Write(myarea.innerHTML);
+  }catch(e){
+   alert(‎e.message);
+  }finally{
+   f.Close();
+  }
+    }
+    
+    function loadfile() {
+  var f;
+  try{
+   if (!fso.FileExists(filename)) {
+    fso.CreateTextFile(filename,true);
+   }
+   f = fso.OpenTextFile(filename,1);
+   r = f.ReadAll();
+   myarea.innerHTML=r;
+  }catch(e){
+   alert(‎e.message);
+  }finally{
+   f.Close();
+  }
+    }
+    
+    function deleteFile() {
+  try{
+   if (fso.FileExists(filename)) {
+    fso.DeleteFile(filename);
+   }
+  }catch(e){
+   alert(‎e.message);
+  }
+ }
+   
+
+    function getFileInfoFromMeth() {
+  var objFile = fso.GetFile(filename);
+  //메소드를 이용하여 파일의 속성을 알아보자.
+  var strAtt = "Absolute path: " + fso.GetAbsolutePathName(objFile)  + "\n";    //절대경로
+   strAtt += "Parent folder: " + fso.GetParentFolderName(objFile)  + "\n";          //해당 폴더
+   strAtt += "File name: "  + fso.GetFileName(objFile)  + "\n";                          //파일명
+   strAtt += "Base name: "  + fso.GetBaseName(objFile)  + "\n";                     //파일명만
+   strAtt += "Extension name: " + fso.GetExtensionName(objFile)  + "\n";         //확장자명
+  alert(‎strAtt);
+ }
+
+
+    function getFileInfoFromConst() {
+  var objFile = fso.GetFile(filename);
+  //메소드를 이용하여 파일의 속성을 알아보자.
+  var strAtt = "";
+   strAtt = "Date created: " + objFile.DateCreated  + "\n";                               //생성일자
+   strAtt += "Date last accessed: " + objFile.DateLastAccessed  + "\n";           //최종 접근일
+   strAtt += "Date last modified: " + objFile.DateLastModified  + "\n";                //최종 수정일
+   strAtt += "Drive: " + objFile.Drive  + "\n";                                                   //해당 드라이브
+   strAtt += "Name: " + objFile.Name  + "\n";                                                 //파일명
+   strAtt += "Parent folder: " + objFile.ParentFolder  + "\n";                             //해당 폴더명
+   strAtt += "Path: " + objFile.Path  + "\n";                                                    //경로명
+   strAtt += "Short name: " + objFile.ShortName  + "\n";                                  
+   strAtt += "Short path: " + objFile.ShortPath  + "\n";
+   strAtt += "Size: " + objFile.Size  + "\n";                                                   //파일크기
+   strAtt += "Type: " + objFile.Type  + "\n";                                                  //파일 유형
+  alert(‎strAtt);
+ }
+    //function window.[안내]태그제한으로등록되지않습니다-xxonload() {
+    //    loadfile(filename);
+    //}
+</script>
+
+
+</head>
+<body>
+ <table>
+  <tr> 
+   <td> 
+    <div id=myarea contenteditable=true style="width:320;height:240;border:solid 2 inset;overflow:scroll;background-color:silver;"></div>
+    <br><input type=button value=create [안내]태그제한으로등록되지않습니다-xxonclick=createfile()><input type=button value=load [안내]태그제한으로등록되지않습니다-xxonclick=loadfile()><input type=button value=save [안내]태그제한으로등록되지않습니다-xxonclick=savefile()><input type=button value=delete [안내]태그제한으로등록되지않습니다-xxonclick=deleteFile()><input type=button value=fileInfo1 [안내]태그제한으로등록되지않습니다-xxonclick=getFileInfoFromMeth()><input type=button value=fileInfo2 [안내]태그제한으로등록되지않습니다-xxonclick=getFileInfoFromConst()>
+   </td>
+  </tr>
+ </table>
+</form>
+</body>
+</html>
+[
